@@ -3,6 +3,143 @@ import java.util.Scanner;
 class _01_Java_Basics {
     public static void main(String[] args) {
 
+        // Conditional Statement
+
+        // SWITCH
+        /*
+         * Given the day number print which day it is of the week ,
+         * asssume week starts from Monday and ends on Sunday
+         */
+        /*
+         * Scanner scanner = new Scanner(System.in);
+         * 
+         * int dayNumber = scanner.nextInt();
+         * 
+         * switch (dayNumber) {
+         * case 1:
+         * System.out.println("Monday");
+         * break;
+         * case 2:
+         * System.out.println("Tuesday");
+         * break;
+         * case 3:
+         * System.out.println("Wednesday");
+         * break;
+         * case 4:
+         * System.out.println("Thrusday");
+         * break;
+         * case 5:
+         * System.out.println("Friday");
+         * break;
+         * case 6:
+         * System.out.println("Saturday");
+         * break;
+         * case 7:
+         * System.out.println("Sunday");
+         * break;
+         * 
+         * default:
+         * System.out.println("Invalid Day Number");
+         * 
+         * }
+         */
+
+        // IF ELSE
+
+        // Given an age , print "adult ", if the age >=18 , or print "Teen"
+        // int age = scanner.nextInt();
+        // if (age >= 10)
+        // System.out.println("adult");
+        // else
+        // System.out.println("Teen");
+
+        // IF ELSE IF
+        /*
+         * Given the marks of a student , tell the grade he is getting fall under which
+         * - Grade A (>=90)
+         * - Grade B (>=70 and <90)
+         * - Grade C (>=50 and <50)
+         * - Grade D (>=35 and <50)
+         * - Fail ( <35 )
+         * 
+         */
+        /*
+         * int marks = scanner.nextInt();
+         * if(marks >=90) System.out.println("Grade A");
+         * else if(marks>=70 ) System.out.println("Grade B");
+         * else if(marks>=50 ) System.out.println("Grade C");
+         * else if(marks>=35 ) System.out.println("Grade D");
+         * else System.out.println("Fail");
+         */
+
+        // Nested IF ELSE
+        /*
+         * you are given three intergers a,b,c
+         * print which of these is the largest ,
+         * if two or more integers are equal and are the largest ,
+         * the program should indicate that as well
+         */
+        /*
+         * int num1 = scanner.nextInt();
+         * int num2 = scanner.nextInt();
+         * int num3 = scanner.nextInt();
+         * if (num1 > num2) {
+         * if (num1 > num3)
+         * System.out.println("num1 is the largest");
+         * else if (num3 > num1)
+         * System.out.println("num3 is the largest");
+         * 
+         * } else if (num2 > num1) {
+         * if (num2 > num3)
+         * System.out.println("num2 is the largest");
+         * else if (num3 > num2)
+         * System.out.println("num3 is the largest");
+         * 
+         * } else
+         * System.out.println("No one is the largest");
+         * 
+         */
+        // scanner.close();
+
+        // Arrays
+        /*
+         * int[] arr = new int[5]; // created 5 new objects in our memory
+         * 
+         * arr[0] = 0;
+         * arr[1] = 1;
+         * arr[2] = 2;
+         * arr[3] = 3;
+         * arr[4] = 4;
+         * System.out.println(arr[3]);
+         * 
+         * for (int i = 0; i < arr.length; i++) {
+         * 
+         * }
+         * 
+         * int[] arr1 = { 10, 20, 30, 40, 50 };
+         * int[][] arr2 = { { 10, 20, 90 }, { 30, 40, 75, 50 }, { 60, 91, 70, 80 } };
+         * int[] zero_index = arr2[0]; // {10,20 ,90}
+         * System.out.println(zero_index[1]); // to acces 10
+         * System.out.println(arr2[0][1]); // to acces 10
+         */
+
+        // Constants (Final keyword)
+        /*
+         * 
+         * final double x =20;
+         * System.out.println(x);
+         */
+
+        // Implicit & expilcit Conversion
+        /*
+         * 
+         * double x = 10.8;
+         * int y = (int)x;
+         * System.out.println(x);
+         * System.out.println(y);
+         * 
+         */
+
         // INPUT / OUTPUT
         /*
          * Scanner scanner = new Scanner(System.in); // this is mandatory
@@ -17,8 +154,8 @@ class _01_Java_Basics {
          * scanner.close();// this is mandatory
          * 
          */
-      
-         // STRINGS
+
+        // STRINGS
         /*
          * String name = "abc hjkl";
          * String last_name = " 123cvbnm";
