@@ -3,6 +3,39 @@ import java.util.Scanner;
 class _01_Java_Basics {
     public static void main(String[] args) {
 
+        // loops
+
+        Scanner scanner = new Scanner(System.in);
+
+        /*
+         * int i ;
+         * for(i=0;i<=25;i++){
+         * System.out.println(i);
+         * }
+         */
+
+        /*
+         * 
+         * int size = scanner.nextInt();
+         * int[] arr = new int[size];
+         * for (int i = 0; i < size; i++) {
+         * arr[i] = scanner.nextInt();
+         * }
+         * 
+         * int sum = 0;
+         * for (int i = 0; i <= size - 1; i++) {
+         * sum += arr[i];
+         * }
+         * 
+         * for (int ele : arr) {
+         * System.out.println(ele + " ");
+         * 
+         * }
+         * System.out.println(sum);
+         */
+  
+         scanner.close();
+
         // Conditional Statement
 
         // SWITCH
@@ -10,6 +43,7 @@ class _01_Java_Basics {
          * Given the day number print which day it is of the week ,
          * asssume week starts from Monday and ends on Sunday
          */
+
         /*
          * Scanner scanner = new Scanner(System.in);
          * 
