@@ -25,9 +25,7 @@ Terminal Output
 
 ## Folder Structure
 
-```
-
-Java\_learning/
+Java_learning/
 ├── Folder1/
 │   ├── 1ABC/
 │   │   └── Hello1.java
@@ -40,7 +38,6 @@ Java\_learning/
 │   └── runjava.sh
 └── README.md
 
-```
 
 - **Folders (Folder1, Folder2…):** Your Java exercises.
 - **Subfolders (1ABC, 2ABC…):** Contain `.java` files for each exercise.
