@@ -1,0 +1,6 @@
+
+Already completed this topic earlier:
+
+Path: Java_learning/08_09_Language_Basics/01_LANGUAGE_BASICS/01_JAVA_BASICS
+
+Now while learning OOPS in Java, the same basics came up again.
