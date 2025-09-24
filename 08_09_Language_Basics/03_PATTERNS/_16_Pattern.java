@@ -1,5 +1,11 @@
 import java.util.Scanner;
 
+
+// A
+// BB
+// CCC
+// DDDD
+// EEEEE
 class Solution {
 
     public void pattern16(int n) {
