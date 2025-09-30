@@ -1,0 +1,353 @@
+INHERITANCE 
+
+Inheritance is a fundamental concept in object-oriented programming (OOP) that allows a class (subclass) to inherit the attributes (fields) and behaviors (methods) of another class (superclass). It is the mechanism that promotes code reuse and establishes a hierarchical relationship between classes.
+In Java, this concept allows a subclass to inherit or extend the functionality of a superclass, enabling the subclass to reuse code and, in many cases, modify or add new behavior.
+
+    For example, consider a base class Animal that has a method sound(). Subclasses like Dog and Cat can inherit the sound() method from Animal and override it to produce specific sounds for each type of animal.
+    Consider the following code snippet:
+
+            import java.util.*;
+        import java.util.*;
+
+        // Parent class or super class
+        class School {
+            // Private attribute for school name
+            private String name;
+
+            // Constructor initializes the school name
+            School() {
+                name = "DPS"; // Default school name
+            }
+
+            // Method to print the school name
+            void printSchoolName() {
+                System.out.println("School name: " + name);
+            }
+        }
+
+        // Subclass or child class
+        class Student extends School {
+            // Private attribute for student name
+            private String name;
+
+            // Constructor initializes the student name
+            Student(String name) {
+                this.name = name;
+            }
+
+            // Method to print the student name
+            void printStudentName() {
+                System.out.println("Student name: " + name);
+            }
+        }
+
+        // Main class to execute the program
+        class Main {
+            public static void main(String[] args) {
+                // Create a new student object with the name "Raj"
+                Student student = new Student("Raj");
+
+                // Print the student's name
+                student.printStudentName();
+
+                // Print the school's name
+                student.printSchoolName();
+            }
+        }
+
+
+
+PARENT CLASS
+
+The parent class (also known as the superclass) is the class that provides common properties (attributes) and behaviors (methods) that are shared by one or more subclasses. It serves as a template or blueprint from which other classes (subclasses) can inherit. For example, School class.
+
+Sub Class(Child Class)
+
+A subclass (also known as a child class) is a class that inherits from a parent class. The subclass can reuse, extend, or override the attributes and methods of the parent class to specialize or modify the inherited functionality. For example, Student class.
+
+Types of Inheritance:
+
+In Java, there are three major types of inheritance:
+
+     • Single Inheritance
+
+     • Multilevel Inheritance
+
+     • Hierarchical Inheritance
+
+
+
+1) SINGLE INHERITANCE 
+
+In Single Inheritance, a child class inherits from one parent class. This is the simplest and most common form of inheritance. Consider the following code snippet:
+
+        import java.util.*;
+        // Parent class
+        class Animal {
+            // Method to represent the eating behavior of an animal
+            void eat() {
+                System.out.println("This animal eats food.");
+            }
+        }
+
+        // Child class inheriting from the Animal class
+        class Dog extends Animal {
+            // Method specific to the Dog class to represent barking behavior
+            void bark() {
+                System.out.println("This dog barks.");
+            }
+        }
+
+        // Main class to execute the program
+        class Main {
+            public static void main(String[] args) {
+                // Create an object of the Dog class
+                Dog dog = new Dog();
+
+                // Call the eat method inherited from the Animal class
+                dog.eat();  // Output: This animal eats food.
+
+                // Call the bark method defined in the Dog class
+                dog.bark(); // Output: This dog barks.
+            }
+        }
+
+
+
+2. MULTILEVEL INHERITANCE 
+
+In Multilevel Inheritance, a class derives from a child class, creating a chain of inheritance. Here, the child class of one level becomes the parent class for the next level. Consider the code snippet below:
+
+        import java.util.*;
+        // Parent class representing general animals
+        class Animal {
+            // Method to define the eating behavior of animals
+            void eat() {
+                System.out.println("This animal eats food.");
+            }
+        }
+
+        // Intermediate class representing mammals, inheriting from Animal
+        class Mammal extends Animal {
+            // Method to define the walking behavior of mammals
+            void walk() {
+                System.out.println("This mammal walks.");
+            }
+        }
+
+        // Subclass representing dogs, inheriting from Mammal
+        class Dog extends Mammal {
+            // Method to define the barking behavior specific to dogs
+            void bark() {
+                System.out.println("This dog barks.");
+            }
+        }
+
+        // Main class to demonstrate multilevel inheritance
+        class Main {
+            public static void main(String[] args) {
+                // Create an object of the Dog class
+                Dog dog = new Dog();
+
+                // Call the eat method inherited from the Animal class
+                dog.eat(); // Output: This animal eats food.
+
+                // Call the walk method inherited from the Mammal class
+                dog.walk(); // Output: This mammal walks.
+
+                // Call the bark method defined in the Dog class
+                dog.bark(); // Output: This dog barks.
+            }
+        }
+
+
+
+3. HIERARCHICAL INHERITANCE 
+
+In Hierarchical Inheritance, multiple child classes inherit from a single parent class. Consider the code snippet below:
+
+
+        import java.util.*;
+        // Parent class representing general animals
+        class Animal {
+            // Method to define the eating behavior common to all animals
+            void eat() {
+                System.out.println("This animal eats food.");
+            }
+        }
+
+        // Subclass representing dogs, inheriting from Animal
+        class Dog extends Animal {
+            // Method to define the barking behavior specific to dogs
+            void bark() {
+                System.out.println("This dog barks.");
+            }
+        }
+
+        // Subclass representing cats, inheriting from Animal
+        class Cat extends Animal {
+            // Method to define the meowing behavior specific to cats
+            void meow() {
+                System.out.println("This cat meows.");
+            }
+        }
+
+        // Main class to demonstrate hierarchical inheritance
+        class Main {
+            public static void main(String[] args) {
+                // Create an object of the Dog class
+                Dog dog = new Dog();
+
+                // Create an object of the Cat class
+                Cat cat = new Cat();
+
+                // Call the eat method inherited from the Animal class using the Dog object
+                dog.eat(); // Output: This animal eats food.
+
+                // Call the bark method specific to the Dog class
+                dog.bark(); // Output: This dog barks.
+
+                // Call the eat method inherited from the Animal class using the Cat object
+                cat.eat(); // Output: This animal eats food.
+
+                // Call the meow method specific to the Cat class
+                cat.meow(); // Output: This cat meows.
+            }
+        }
+
+
+Keypoints:
+    
+    • In a hierarchical inheritance, a one-to-many relationship is established between classes.
+    
+    • The child classes share the common methods and properties of the parent class but can also define their unique features.
+
+
+
+ADVANTAGES OF USING INHERITANCE 
+
+Inheritance is a cornerstone of object-oriented programming, offering significant benefits such as:
+    
+    • Reusability: It allows you to reuse the code of an existing class in a new class. Instead of rewriting code, the subclass (child class) can inherit the methods and attributes of the parent class. This reduces redundancy and promotes efficient coding.
+    
+    • Modularity: It promotes a modular structure by separating concerns into different classes. Each class focuses on a specific part of the program, improving clarity and manageability.
+    
+    • Extensibility: It enables adding new features or extending existing functionality without modifying the base class. This makes it easy to adapt to changing requirements.
+    
+    • Maintainability: Inheritance makes code easier to maintain by centralizing common features in a parent class. Changes to shared functionality only need to be made in one place, reducing the risk of errors.
+
+
+IMPORTANT CONCEPT IN INHERITANCE 
+
+1. Access Modifier:
+
+Access modifiers define the visibility and accessibility of classes, methods, and variables in different contexts, including inheritance. 
+
+2. Method Overriding:
+    
+    • Method overriding allows a subclass to provide a specific implementation of a method already defined in its parent class. This supports runtime polymorphism and enables dynamic behavior. There are some key rules for Overriding:
+    
+    • The method must have the same name, parameters, and return type as the parent class.
+    
+    • The method in the child class cannot have a more restrictive access modifier than the parent method.
+    
+    • Only inheritable methods (public or protected) can be overridden.
+
+    • The @Override annotation is recommended for clarity.
+
+3. "Super" Keyword:
+    
+    • The super keyword is used in inheritance to:
+    
+    • Access Parent Class Members: Refer to parent class methods or variables when they are shadowed by child class members.
+    
+    • Invoke Parent Class Constructor: Call the parent class constructor to initialize the inherited state.
+
+
+
+METHOD OVERLOADING VS METHOD OVERRIDING
+
+    • Definition:
+        
+        • Method Overloading occurs when two or more methods in the same class have the same name but different parameter lists (number, type, or order of parameters).
+        
+        • Method Overriding occurs when a subclass provides a specific implementation of a method already defined in its parent class.
+
+    • Inheritance Dependency:
+        
+        • Method Overloading does not require inheritance. It happens within the same class.
+        
+        • Method Overriding requires inheritance; occurs between a parent class and its subclass.
+
+    • Parameters:
+        
+        • In Method Overloading, methods must have different parameter lists (number, type, or order).
+        
+        • In Method Overriding, the method must have the same parameter list as the method in the parent class.
+
+    • Access Modifiers:
+        
+        • In Method Overloading, methods can have any access modifier; no restrictions..
+        
+        • The access modifier in the overriding method cannot be more restrictive than in the parent class.
+
+
+
+IMPORTANT POINT
+
+
+Multiple Inheritance:
+
+Along with the three types of inheritances discussed above, there is another type of inheritance - Multiple Inheritance.
+
+Multiple inheritance refers to a feature in object-oriented programming where a class can inherit properties and methods from more than one parent class. This allows the child class to combine the functionality of multiple parent classes.
+
+
+Diamond Problem:
+
+Diamond Problem occurs when a class inherits from two classes that have methods with the same name. The compiler cannot determine which method to execute.
+
+If both B and C inherit from A and override a method, and D inherits from both B and C, which version of the method should D inherit? This ambiguity is why Java restricts multiple inheritance for classes.
+
+
+Note
+
+Note that Java does not allow multiple inheritance using classes to avoid the diamond problem, it allows multiple inheritance through interfaces, as interfaces only declare method signatures (no method bodies initially), thus preventing conflicts.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
