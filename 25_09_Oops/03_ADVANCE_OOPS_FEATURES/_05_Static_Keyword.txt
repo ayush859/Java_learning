@@ -1,0 +1,208 @@
+
+UNDERSTANDING THE STATIC KEYWORD IN JAVA
+
+In Java, the static keyword is used to indicate that a member belongs to the class rather than to any specific instance of the class. It can be applied to variables, methods, blocks, and nested classes. Members marked as static are shared across all instances of the class, meaning they are loaded only once in memory during the class's lifecycle.
+
+
+
+STATIC VARIABLES IN JAVA
+
+Static variables, also known as class variables, are shared by all instances of a class. They are declared with the static keyword and are initialized only once when the class is loaded into memory. They are useful for storing common values or constants that are the same for all objects.
+To better understand, consider the following example:
+
+        import java.util.*;
+        // Counter class
+        class Counter {
+        static int count = 0; // static variable
+
+        // Constructor
+        Counter() {
+            count++;
+        }
+
+        // Method to display count
+        static void displayCount() {
+            System.out.println("Count: " + count);
+        }
+        }
+
+        // Main class
+        class Main {
+        public static void main(String[] args) {
+            Counter c1 = new Counter();
+            Counter c2 = new Counter();
+            Counter.displayCount(); // Output: Count: 2
+        }
+        }
+
+
+Here, the count variable is shared among all objects of the Counter class giving the output as 2 instead of 0.
+
+
+
+STATIC METHODS IN JAVA
+
+Static methods belong to the class rather than to any instance. They can be called without creating an object of the class. These methods are commonly used for utility or helper functions like mathematical calculations.
+To better understand, consider the following example:
+
+        import java.util.*;
+        // Math Utility class
+        class MathUtils {
+            static int add(int a, int b) {
+                return a + b;
+            }
+        }
+
+        class Main {
+            public static void main(String[] args) {
+                int result = MathUtils.add(5, 3); // Calling static method without object creation
+                System.out.println("Result: " + result); // Output: Result: 8
+            }
+        }
+
+Here, the programwas able to call the add Utility function without creating an object (instance) of the class because it is a static method.
+
+
+Keypoints:
+    
+    • Static methods cannot access non-static members (variables or methods) directly because non-static members require an instance of the class.
+
+    • Static methods can only directly call other static methods and access static variables.
+
+
+
+STATIC BLOCKS IN JAVA
+
+Static blocks, also known as static initialization blocks, are used to initialize static variables. They are executed when the class is loaded into memory, before any objects are created or static methods are called.
+Consider the following code snippet:
+
+        import java.util.*;
+        class Example {
+            static int value;
+            
+            // Static block
+            static {
+                value = 10; // Initialization of static variable
+                System.out.println("Static block executed.");
+            }
+        }
+
+        // Main class
+        class Main {
+            public static void main(String[] args) {
+                System.out.println("Value: " + Example.value); // Output: Static block executed. Value: 10
+            }
+        }
+
+Static blocks are executed in the order they appear in the class.
+
+
+
+INTERACTION BETWEEN STATIC AND NON-STATIC MEMBERS
+
+Static methods cannot directly access or invoke non-static methods or variables because static methods do not depend on a class instance. However, non-static members can be accessed indirectly by creating an instance of the class.
+
+        import java.util.*;
+        class Example {
+            int instanceVar = 10;
+
+            static void staticMethod() {
+                Example obj = new Example(); // Creating an instance to access non-static members
+                System.out.println("Instance variable: " + obj.instanceVar);
+            }
+        }
+
+        public class Main {
+            public static void main(String[] args) {
+                Example.staticMethod();
+            }
+        }
+
+In the above example, the static method staticMethod uses an object to access the non-static instanceVar.
+
+
+
+ADVANTAGES OF STATIC MEMBERS IN JAVA
+
+There are several benefits of using Static members which are as follows:
+
+    
+    • Memory Efficiency: Static variables are loaded into memory only once, reducing memory usage.
+    
+    • Utility Functions: Static methods are ideal for utility or helper methods that do not require object-specific data (e.g., Math.sqrt()).
+    
+    • Initialization: Static blocks allow for the initialization of static variables, ensuring that common resources are ready for use.
+
+
+Consider the following code snippet:
+
+        import java.util.*;
+        // Utility Class
+        class Utils {
+            static void printMessage(String message) {
+                System.out.println(message);
+            }
+        }
+
+        class Main {
+            public static void main(String[] args) {
+                Utils.printMessage("Hello, Static!"); // Output: Hello, Static!
+            }
+        }
+
+As you can see, Static members simplify scenarios where sharing resources or creating reusable methods is required.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,299 @@
+
+INTERFACES
+
+An interface in Java is a blueprint of a class that defines a contract for behavior but does not provide an implementation. It contains a set of abstract methods (methods without a body) that a class must implement if it chooses to "sign the contract" by implementing the interface. Think of it as a way to specify what a class should do without dictating how it should do it.
+
+Consider the following code Snippet:
+
+        import java.util.*;
+        interface Animal {
+            void eat();
+            void sleep();
+        }
+
+        class Dog implements Animal {
+            @Override
+            public void eat() {
+                System.out.println("Dog eats bones.");
+            }
+
+            @Override
+            public void sleep() {
+                System.out.println("Dog sleeps in a kennel.");
+            }
+        }
+
+Here, Animal is the interface, and Dog is a class implementing it by providing specific behaviors for eat and sleep methods.
+ 
+
+
+CAN INTERFACES HAVE INSTANCE VARIABLES ?
+
+No, an interface cannot have instance variables. All fields in an interface are implicitly public, static, and final. This means they act as constants and cannot be changed. Attempting to declare a non-static or non-final field will result in a compilation error.
+
+
+
+CAN INTERFACES HAVE CONSTRUCTOR ?
+
+No, interfaces cannot have constructors. This is because constructors are used to initialize the state of an object, and interfaces cannot have state (no instance variables). Since interfaces are not classes and cannot be instantiated directly, they do not need constructors.
+
+However, a class that implements an interface can have its own constructors to initialize its objects. For example:
+
+        import java.util.*;
+        interface Vehicle {
+            void start();
+        }
+
+        class Car implements Vehicle {
+            private String brand;
+
+            Car(String brand) {
+                this.brand = brand;
+            }
+
+            @Override
+            public void start() {
+                System.out.println(brand + " car is starting.");
+            }
+        }
+
+In the above example, the Car class provides a constructor for initialization, but the Vehicle interface does not.
+
+
+ 
+CAN A CLASS IMPLEMENT MULTIPLE INTERFACES ?
+
+Yes, a class in Java can implement multiple interfaces. This is one of the key advantages of using interfaces because Java does not support multiple inheritance with classes, but it does with interfaces. For example:
+
+        import java.util.*;
+        interface Flyable {
+            void fly();
+        }
+
+        interface Swimmable {
+            void swim();
+        }
+
+        class Duck implements Flyable, Swimmable {
+            @Override
+            public void fly() {
+                System.out.println("Duck is flying.");
+            }
+
+            @Override
+            public void swim() {
+                System.out.println("Duck is swimming.");
+            }
+        }
+
+Here, the Duck class implements both Flyable and Swimmable interfaces, providing specific behaviors for flying and swimming.
+
+
+
+KEY FEATURES OF INTERFACES
+
+Interfaces are powerful because they enable several key benefits:
+
+    • Multiple Inheritance: As mentioned earlier, a class can implement multiple interfaces, allowing for functionality from various sources to be combined.
+    
+    • Contracts: An interface acts as a contract that a class must fulfill. This ensures consistency across different classes implementing the interface.
+    
+    • Loosely Coupled Systems: By programming to an interface rather than a concrete class, your code becomes more flexible and easier to maintain.
+
+To better understand, consider the given code snippet:
+
+        import java.util.*;
+        interface PaymentGateway {
+            void processPayment(double amount);
+        }
+
+        class PayPal implements PaymentGateway {
+            @Override
+            public void processPayment(double amount) {
+                System.out.println("Processing payment via PayPal: $" + amount);
+            }
+        }
+
+        class Stripe implements PaymentGateway {
+            @Override
+            public void processPayment(double amount) {
+                System.out.println("Processing payment via Stripe: $" + amount);
+            }
+        }
+
+Here, a client can use any implementation of PaymentGateway (e.g., PayPal or Stripe) without being tightly coupled to a specific one.
+
+
+
+DEFAULT AND STATIC METHODS IN INTERFACES
+
+
+
+1. STATIC METHODS
+
+Static methods belong to the class rather than any instance of the class. This means that they can be called without creating an object of the class. Static methods can only directly access static members of the class, not instance variables or instance methods. They are defined using the static keyword.
+
+        import java.util.*;
+        class Example {
+            static void staticMethod() {
+                System.out.println("This is a static method.");
+            }
+        }
+
+        class Main {
+            public static void main(String[] args) {
+                Example.staticMethod();  // Accessing static method directly using the class name
+            }
+        }
+
+
+Keypoints:
+    
+    • They are called on the class itself, not on an instance of the class.
+    
+    • They can be used to perform operations that are common to all instances of a class.
+    
+    • They can access only other static members (variables, methods) of the class.
+    
+    • They cannot access instance variables or methods.
+
+
+
+2. DEFAULT METHODS
+
+Default methods were introduced in Java 8 to allow adding new functionality to interfaces without breaking existing implementations. Prior to Java 8, interfaces could only declare method signatures, leaving the implementation to the classes that implemented the interface. With the introduction of default methods, interfaces can now provide default implementations for methods.
+
+        import java.util.*;
+        interface Example {
+            default void defaultMethod() {
+                System.out.println("This is a default method.");
+            }
+        }
+
+        class Demo implements Example {
+            public static void main(String[] args) {
+                Example obj = new Demo();
+                obj.defaultMethod();  // Accessing default method
+            }
+        }
+
+Keypoints:
+
+    • Default methods have a body and are defined using the default keyword in the interface.
+
+    • They can be called on objects that implement the interface.
+
+    • They allow user to add new methods to an interface without affecting existing classes that implement the interface.
+
+    • If a class implements an interface with a default method, the class can override the method if needed.
+
+
+Why Default Method were Introduced?
+
+Before Java 8, adding a new method to an interface would break all existing implementations of that interface. This was a limitation when you wanted to evolve libraries and APIs without breaking backward compatibility. To solve this, Java 8 introduced default methods, allowing interfaces to provide method implementations, ensuring existing classes can still work without modification.
+
+
+Use Cases for Defaul Method:
+    
+    • Backward compatibility: Allows the addition of new methods to interfaces without affecting existing classes that implement the interface.
+    
+    • Multiple interfaces: In cases where a class implements multiple interfaces that may have the same method signature, a default method can be used to avoid conflicts by providing a default implementation.
+
+
+
+INTERFACE Inheritance
+
+Interfaces in Java can extend other interfaces, allowing for inheritance. When an interface inherits another, it can add new methods to the contract defined by the parent interface.
+Consider the following code snippet:
+
+        import java.util.*;
+        interface Animal {
+            void eat();
+        }
+
+        interface Mammal extends Animal {
+            void walk();
+        }
+
+        class Human implements Mammal {
+            @Override
+            public void eat() {
+                System.out.println("Human eats food.");
+            }
+
+            @Override
+            public void walk() {
+                System.out.println("Human walks on two legs.");
+            }
+        }
+
+Here, the Mammal interface inherits the eat method from Animal and adds the walk method. The Human class implements both methods.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
