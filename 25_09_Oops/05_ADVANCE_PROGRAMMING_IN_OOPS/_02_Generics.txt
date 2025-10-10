@@ -1,0 +1,517 @@
+
+GENERICS IN JAVA
+
+
+
+Generics were introduced in Java 5 to ensure type safety and code reusability. They allow defining classes, interfaces, and methods that can operate on various data types without sacrificing type safety.
+
+Key Benefits:
+
+    • Prevents ClassCastException (occurs when you try to cast an object to a class that it is not an instance of, leading to a runtime error).
+
+    • Provides Strong Type Checking at Compile Time.
+
+    • Reduces Code Redundancy.
+
+Example without Generics (before Java 5):
+
+        import java.util.*;
+        import java.util.ArrayList;
+
+        // Main class without Generics 
+        class Main {
+            public static void main(String[] args) {
+                ArrayList list = new ArrayList(); // No type safety
+                list.add("Hello");
+                list.add(100);  // No compile-time error
+                
+                // Type casting is required
+                String str = (String) list.get(0);
+                System.out.println(str);
+            }
+        }
+
+
+In the above code, there are following drawbacks:
+
+    • Allows different types in the same list (which is risky).
+
+    • Because of different types being added to the same list, explicit type casting is required every time any operation needs to be performed.
+
+    • No compile-time error is shown increasing the risk of ClassCastException.
+
+Example with Generics:
+
+        import java.util.*;
+        import java.util.ArrayList;
+
+        // Main class with Generics
+        class Main {
+            public static void main(String[] args) {
+                ArrayList<String> list = new ArrayList<>(); // Type-safe list
+                list.add("Hello");
+                // list.add(100);  // Compile-time error
+
+                String str = list.get(0); // No casting required
+                System.out.println(str);
+            }
+        }
+
+Using generics provide the following advantages:
+
+    • Type Safety is ensured (cannot add elements of other types)
+
+    • No explicit type casting is required for different operations.
+
+
+ADVANTAGES OF USING GENERICS
+
+There are various advantages that comes with working with Generics. These are:
+    
+    • Type Safety: Avoids ClassCastException (thrown to indicate that the code has attempted to cast an object to a subclass of which it is not an instance).
+    
+    • Reusability: Write code that works with different data types.
+    
+    • Eliminates Explicit Type Casting: No need to cast objects.
+
+Example:
+
+        import java.util.*;
+        // Generic Class
+        class GenericExample<T> { // T is a type parameter
+            T obj;
+            
+            // Constructor
+            GenericExample(T obj) { 
+                this.obj = obj;
+            }
+            
+            // Method to display type T
+            void displayType() {
+                System.out.println("Type: " + obj.getClass().getName());
+            }
+        }
+
+        // Main class
+        class Main {
+            public static void main(String[] args) {
+                GenericExample<Integer> intObj = new GenericExample<>(10);
+                GenericExample<String> strObj = new GenericExample<>("Hello");
+                
+                intObj.displayType();  // Output: Type: java.lang.Integer
+                strObj.displayType();  // Output: Type: java.lang.String
+            }
+        }
+
+
+Keypoints
+
+    • Same class works for multiple types.
+
+    • No need to write separate classes for different data types
+
+
+
+GENERICS CLASS 
+
+        import java.util.*;
+        class ClassName<T> {
+            // T is a type parameter
+        }
+
+Example:
+
+        import java.util.*;
+        // Generic Class 
+        class Box<T> { // T is the data type
+            private T value;
+            
+            public void set(T value) { this.value = value; }
+            
+            public T get() { return value; }
+        }
+
+        class Main {
+            public static void main(String[] args) {
+                Box<Integer> intBox = new Box<>();
+                intBox.set(100);
+                System.out.println(intBox.get()); // Output: 100
+                
+                Box<String> strBox = new Box<>();
+                strBox.set("Hello Generics");
+                System.out.println(strBox.get()); // Output: Hello Generics
+            }
+        }
+
+
+Keypoints:
+
+    • Works for any data type.
+
+    • Code reusability.
+
+
+
+GENERIC  METHODS 
+
+A generic method allows different data types within a single method.
+
+Syntax:
+
+        import java.util.*;
+        class ClassName {
+            <T> void methodName(T param) {
+                // Generic Method
+            }
+        }
+
+Example: 
+
+        import java.util.*;
+        // Class having generic method 
+        class GenericMethodExample {
+            
+            // Generic method with T data type
+            public <T> void print(T data) {
+                System.out.println("Data: " + data);
+            }
+        }
+
+        // Main class 
+        class Main {
+            public static void main(String[] args) {
+                GenericMethodExample obj = new GenericMethodExample();
+                
+                obj.print(100);        // Output: Data: 100
+                obj.print("Generics"); // Output: Data: Generics
+                obj.print(3.14);       // Output: Data: 3.14
+            }
+        }
+
+Keypoints:
+
+    • Works for multiple types
+
+    • No need for method overloading
+
+Important Note:
+
+It is important to take declare the generic either in the class or in the method. Otherwise, the compiler will not be able to understand the generic used and will throw an compiler-time error.
+
+
+
+BOUNDED TYPE PARAMETERS
+
+Bounded type parameters restrict the type of values that can be used as generic arguments, ensuring type safety and enabling operations specific to that type.
+
+Syntax:
+
+        import java.util.*;
+        class ClassName<T extends SomeClass> {
+            // Only classes extending SomeClass are allowed as T
+        }
+
+    • Here, T must be a subclass of SomeClass.
+
+    • It cannot be any random class; it must match the bounded condition.
+
+
+Example: Restricting to Number and its Subclasses
+
+        import java.util.*;
+        // Class implemeting Bounded Type Parameters
+        class NumericBox<T extends Number> { // Only Number types allowed
+            private T num;
+            
+            public NumericBox(T num) { this.num = num; }
+            
+            public double square() {
+                return num.doubleValue() * num.doubleValue();
+            }
+        }
+
+        // Main class
+        class Main {
+            public static void main(String[] args) {
+                NumericBox<Integer> intBox = new NumericBox<>(10);
+                System.out.println(intBox.square()); // Output: 100.0
+                
+                NumericBox<Double> doubleBox = new NumericBox<>(5.5);
+                System.out.println(doubleBox.square()); // Output: 30.25
+                
+                // NumericBox<String> strBox = new NumericBox<>("Hello"); // Compile-time error!
+            }
+        }
+
+Explanation:
+
+    • NumericBox Allowed (because Integer extends Number)
+
+    • NumericBox Allowed (because Double extends Number)
+
+    • NumericBox Not Allowed (because String does not extend Number)
+
+
+
+WILDCARD TYPES 
+
+Wildcard types (?) in Java Generics are used when the exact type parameter is unknown. They provide flexibility in method parameters, allowing a range of types instead of a specific one.
+
+Benefits of using Wildcard Types:
+
+    • Supports method parameters with unknown generic types.
+
+    • Allows flexibility in accepting multiple subtypes or supertypes.
+
+    • Reduces redundant code and enhances reusability.
+
+Types of Wildcard:
+
+    • Upper Bounded Wildcard (? extends T): Allows reading, but restricts writing.
+
+    • Lower Bounded Wildcard (? super T): Allows writing, but restricts reading.
+
+
+1. Upper Bounded Wildcard (? extends T)
+
+? extends T allows a type parameter that is T or any subclass of T. It allows read access but restricts modification. It is useful when you need to process elements but not modify the collection.
+
+Example: Reading from a List of Numbers or Its Subtypes
+
+        import java.util.*;
+        import java.util.List;
+        import java.util.Arrays;
+
+        // Example of Upper Bound Wildcard Types
+        class UpperBoundExample {
+            public static void printList(List<? extends Number> list) { // Accepts Number and its subtypes
+                for (Number num : list) {
+                    System.out.print(num + " "); // Reading is allowed
+                }
+                System.out.println("");
+
+                // list.add(10); // Compilation error: Cannot add elements to a list of `? extends Number`
+            }
+        }
+
+        // Main class
+        class Main {
+            public static void main(String[] args) {
+                List<Integer> intList = Arrays.asList(1, 2, 3);
+                List<Double> doubleList = Arrays.asList(1.1, 2.2, 3.3);
+
+                UpperBoundExample obj = new UpperBoundExample();
+
+                obj.printList(intList);    // Allowed (as Integer extends Number)
+                obj.printList(doubleList); // Allowed (as Double extends Number)
+            }
+        }
+
+key Takeaways:
+
+    • Allows reading elements of type Number or its subtypes (Integer, Double, etc.).
+
+    • Prevents adding new elements (except null), as the exact subtype is unknown.
+    
+
+2. Lower Bounded Wildcard (? super T)
+
+? super T means any type that is T or a superclass of T. It allows write access but restricts reading. It is useful when adding elements to a collection.
+
+Example: Adding Elements to a List of Integers or Its Supertypes
+
+        import java.util.*;
+        import java.util.List;
+        import java.util.ArrayList;
+
+        // Example of Lower Bound Wildcard Types
+        class LowerBoundExample {
+            public static void addNumbers(List<? super Integer> list) { // Accepts Integer and its supertypes
+                list.add(10); // Allowed
+                list.add(20);
+
+                // Reading AND Storing is not Allowed
+                // Integer num = list.get(0); // Error: Cannot guarantee it’s an Integer
+
+                System.out.println(list);
+            }
+        }
+
+        // Main class
+        class Main {
+            public static void main(String[] args) {
+                LowerBoundExample obj = new LowerBoundExample();
+
+                List<Number> numList = new ArrayList<>(); // Number is a superclass of Integer
+                obj.addNumbers(numList); // Allowed
+
+                List<Object> objList = new ArrayList<>(); // Object is also a superclass of Integer
+                obj.addNumbers(objList); // Allowed
+            }
+        }
+
+
+
+RAW TYPES
+
+A raw type in Java is a generic class or interface that is used without specifying a type parameter. Before Java 5, collections and generic classes operated without type safety, leading to potential runtime errors.
+
+A raw type is when you omit the type parameter while declaring an instance of a generic class.
+
+Example: Using a Raw Type
+
+        import java.util.*;
+        class Box<T> { // Generic class
+            T value;
+            
+            void set(T value) { this.value = value; }
+            T get() { return value; }
+        }
+
+        // Main class
+        class Main {
+            public static void main(String[] args) {
+                // Raw Type (because no type is given while declaration)
+                Box rawBox = new Box();
+                
+                rawBox.set("Hello"); 
+                rawBox.set(100); // No compile-time error, but runtime issues may occur
+            }
+        }
+
+The above code compiles without errors, but mixing different types can cause runtime exceptions.
+
+
+Why are Raw Types Problematic?
+
+Using raw types can lead to unchecked warnings and runtime exceptions.
+
+Example: Runtime Error with Raw Types
+
+        import java.util.*;
+        class Box<T> { // Generic class
+            T value;
+            
+            void set(T value) { this.value = value; }
+            T get() { return value; }
+        }
+
+        // Main class 
+        class Main {
+            public static void main(String[] args) {
+                Box rawBox = new Box(); // Raw Type
+                rawBox.set("Hello"); 
+                
+                Box<Integer> intBox = rawBox; // Unsafe assignment (No type check)
+                intBox.set(100); // No error at compile-time, but type mismatch at runtime
+            }
+        }
+
+The above code exhibits the risk of mixing String and Integer in rawBox that causes a ClassCastException at runtime. Hence, it is not considered a good practice to use Raw Types.
+
+
+
+TYPE ERASURE
+
+Type Erasure is a fundamental concept in Java Generics, where generic type parameters () are removed at compile-time. This ensures backward compatibility with legacy Java versions (before Java 5), where generics did not exist.
+
+Keypoints:
+
+    • Generics exist only at compile-time; they do not exist at runtime.
+
+    • The JVM does not retain type parameters () after compilation.
+
+    • The compiler replaces generic types with raw types (Object or bound type).
+
+Example: Generic Class Before Compilation
+
+        import java.util.*;
+        class Box<T> {  
+            private T value;
+
+            void set(T value) { this.value = value; }
+            T get() { return value; }
+        }
+
+After Compilation (Type Erasure)
+
+        import java.util.*;
+        class Box {  // `<T>` is erased
+            private Object value;
+
+            void set(Object value) { this.value = value; }  // `<T>` replaced with `Object`
+            Object get() { return value; }
+        }
+
+
+At runtime, all generic types are treated as Object or their upper bound.
+
+Reasons for Type Erasure in Java:
+
+    • Backward Compatibility: Allows generic code to work with older Java versions.
+
+    • Performance Optimization: Avoids unnecessary runtime overhead.
+
+    • Simplifies JVM Implementation: Keeps bytecode simple.
+
+
+Impact of Type Erasure on Code:
+
+Since generics are removed at compile-time, certain operations become restricted. For instance, using instanceof with generic types is not allowed, as the type information is erased. Similarly, creating generic arrays is not possible, since the runtime does not retain the actual type of the generic parameter.
+
+These limitations arise because Java replaces generic types with Object or their upper bound, making it impossible to perform certain type-specific operations at runtime.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
