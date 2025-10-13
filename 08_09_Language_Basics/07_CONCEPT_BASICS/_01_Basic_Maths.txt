@@ -1,0 +1,15 @@
+Only Video Explanation for below Practice Problems
+
+1. Count all digits of a number
+2. Count number of odd digits in a number
+3. Reverse a number
+4. Palindrome number
+5. Return the largest digit in a number
+6. Factorial of a given number
+7. Check if the number is armstrong
+8. Check for perfect number
+9. Check for prime number
+10. Count of prime numbers till N
+11. GCD of two numbers
+12. LCM of two numbers
+13. Divisors of a number
